@@ -1,9 +1,15 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
+import Head from "next/head";
+import Image from "next/image";
+import { Inter } from "@next/font/google";
+import styles from "@/styles/Home.module.css";
 
-const inter = Inter({ subsets: ['latin'] })
+import dynamic from 'next/dynamic'
+
+const Anime = dynamic(() => import('react-anime'), {
+  ssr: false
+});
+
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
@@ -26,7 +32,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              By{' '}
+              By{" "}
               <Image
                 src="/vercel.svg"
                 alt="Vercel Logo"
@@ -40,6 +46,14 @@ export default function Home() {
         </div>
 
         <div className={styles.center}>
+        <Anime opacity={[0, 1]} translateY={'1em'} delay={(e, i) => i * 1000}>
+          <h1>Blog Post</h1>
+          <section>
+            <p>Upon this, Daggoo, with either hand upon the gunwale to steady his way, swiftly slid aft, and then erecting himself volunteered his lofty shoulders for a pedestal.</p>
+            <p>"Good a mast-head as any, sir. Will you mount?"</p>
+            <p>"That I will, and thank ye very much, my fine fellow; only I wish you fifty feet taller."</p>
+          </section>
+        </Anime>
           <Image
             className={styles.logo}
             src="/next.svg"
@@ -57,6 +71,7 @@ export default function Home() {
               priority
             />
           </div>
+          
         </div>
 
         <div className={styles.grid}>
@@ -119,5 +134,5 @@ export default function Home() {
         </div>
       </main>
     </>
-  )
+  );
 }
